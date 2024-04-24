@@ -1,0 +1,202 @@
+\documentclass[12pt]{ctexrep}
+\usepackage{graphicx} %如需在文档中插入图片
+\usepackage{geometry} %调整页面设置，如页边距
+\usepackage{float} %强制修改图片插入位置
+\usepackage{enumerate} %有序列表
+\usepackage{booktabs} %插入表格
+\usepackage{amsmath} %长公式手动换行
+\usepackage{lmodern}%解决字形问题
+\usepackage{fancyhdr}%页眉页脚设置
+\usepackage{multirow}%合并单元格
+\usepackage{caption}%修改图表caption的格式
+\usepackage{pdfpages}%插入pdf
+\usepackage{rotating}%使表格旋转90度纵向放置
+\usepackage{afterpage}%使用\clearpage指令需要的宏包
+\usepackage{titlesec}%设置标题样式
+\usepackage{fontspec}
+\usepackage{ctex}
+\usepackage{CJKutf8}
+\usepackage{setspace}
+\usepackage{tocloft}%设置目录行间距
+
+
+\captionsetup[figure]{labelsep=space}{}%使用空格作为图表编号和caption之间的分隔符
+\captionsetup[table]{labelsep=space}%设置表格标题格式
+%-----------------设置页眉页脚----------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{}
+\fancyhead[R]{}
+\chead{青岛理工大学毕业设计（论文）}
+\cfoot{第 \thepage 页}
+%----------------标题日期作者-----------------
+\title{A \LaTeX{} sample}
+\author{JerryLF7}
+\date{\today}
+%-----------------页边距-----------------
+\geometry{a4paper, top=2.54cm, bottom=2.54cm, left=3.18cm, right=3.18cm}
+
+%--------------一级级标题格式-------------
+\titleformat{\section}
+    {\normalfont\heiti\zihao{3}\bfseries}{\thechapter}{1em}{}
+%----------------二级标题格式---------------
+\titleformat{\section}
+    {\normalfont\heiti\zihao{4}\bfseries}{\thesection}{0.5em}{}
+%----------------三级标题格式---------------
+\titleformat{\subsection}
+    {\normalfont\bfseries}{\hspace{2em}\thesubsection}{0.5em}{}
+%----------------四级标题格式---------------
+\setcounter{secnumdepth}{4}%添加四级标题的计数器
+\titleformat{\subsubsection}
+    {\normalfont}{\hspace{2em}\thesubsubsection}{0.5em}{}%设置四级标题的序号和样式
+
+%-----------------设置标题字体------------------
+\ctexset{
+  chapter = {
+    format = \centering\heiti\zihao{3},
+  },
+  section = {
+    format = \heiti\zihao{4},
+  },
+  subsection = {
+    format = \heiti\zihao{-4},
+  },
+}
+
+%--------------------设置正文字体---------------
+\ctexset{
+  paragraph = {
+    format = \songti\zihao{-4},
+  },
+}
+
+\begin{document}\sloppy %over full错误时，自动处理行宽度超过页面宽度的情况
+
+\maketitle
+%--------------中文摘要和关键词------------
+\begin{center}
+    \zihao{3}\heiti 摘\hspace{1em}要
+  \end{center}
+  
+  % 摘要内容
+  \vspace{1em}
+  \begin{spacing}{1.5}
+    \zihao{-4}\songti 
+    在这里填写中文摘要
+    
+  \end{spacing}
+  
+  % 关键词
+  \vspace{1em}
+  \begin{spacing}{1}
+    \zihao{-4}\heiti 关键词：\zihao{-4}\songti 模板，摘要
+  \end{spacing}
+  
+
+%----------------英文摘要-----------------
+\newpage
+\newfontfamily\englishtitlefont{Times New Roman}
+
+\begin{center}
+  \fontsize{16}{24}\selectfont\englishtitlefont Abstract
+\end{center}
+
+\vspace{1em}
+\fontsize{12}{18}\selectfont
+English abstract should be filled here.\\
+
+\textbf{KEY WORDS:} Template, abstract
+
+
+
+%-------------------目录-----------------
+\newpage
+\renewcommand{\contentsname}{\centering 目录} % 将目录名称居中对齐
+{\centering \tableofcontents}
+
+\setcounter{page}{0}
+\thispagestyle{empty}
+
+%------------------正文--------------------
+\chapter{一级标题}
+    \section{二级标题}
+      \subsection{三级标题}
+            在这里填写正文。
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.7\textwidth]{images/sample.jpg}
+                \caption{在这里填写图片描述}
+            \end{figure}
+
+\chapter{常用样式示例}
+    单行公式：
+    $$M=\frac{1}{8}ql^2=0.125\times 1.5\times 1.95^2=0.71kN\cdot $$
+
+    多行公式：
+    $$I_{eq}^s=\frac{I_s^u+I_s^c}{2}=\frac{2.27\times10^8+1.37\times10^8}{2}=1.82\times10^8mm^4$$
+    $$B^s=E_c I_{eq}^s=3.00\times 10^4 \times 1.82 \times 10^8=5.46\times10^{12}N\cdot mm^2$$
+
+    多行公式（等号对齐）：
+    \begin{eqnarray}
+      M_u&=&f_c bx(h_0-\frac{x}{2})  \nonumber    \\
+      ~&=&14.3\times 1000\times 16.67\times (113-\frac{16.67}{2})\times 10^{-6} \nonumber    \\
+      ~&=&24.95kN\cdot m >M^+=11.5kN\cdot m \nonumber
+    \end{eqnarray}
+
+    数字序号：
+    \begin{enumerate}
+      \item 第一项
+      \item 第二项
+    \end{enumerate}
+
+    多级数字序号：
+    \begin{enumerate}
+      \item 一级序号
+      \item 一级序号
+      \begin{enumerate}[(1)]
+          \item 二级序号
+          \item 二级序号
+      \end{enumerate}
+    \end{enumerate}
+
+    简单表格（共2列）：
+
+    \begin{table}[H]
+      \centering
+      \caption{压型钢板相关参数}
+      \begin{tabular}{lr}
+          \toprule
+          列1表头&列2表头\\
+          \midrule
+          列1内容&列2内容\\
+          列1内容&列2内容\\
+          列1内容&列2内容\\
+          列1内容&列2内容\\
+          列1内容&列2内容\\
+          \bottomrule
+      \end{tabular}
+    \end{table}
+
+    罗马数字：
+    
+    \uppercase\expandafter{\romannumeral1},\uppercase\expandafter{\romannumeral2},
+    \uppercase\expandafter{\romannumeral3}
+
+\newpage % 可选，另起一页
+\chapter*{致谢} % 使用 * 使此部分不计入章节编号
+%\addcontentsline{toc}{chapter}{致谢} 
+%如果需要将致谢添加到目录中，则取消注释
+    在这里填写致谢内容。
+
+\newpage
+
+\chapter*{参考文献}
+%\addcontentsline{toc}{chapter}{参考文献}
+%如果需要将参考文献添加到目录中，则取消注释
+    \begin{enumerate}[{[}1{]}]
+      \item 参考文献1；
+      \item 参考文献2；
+    \end{enumerate}
+
+\end{document}
